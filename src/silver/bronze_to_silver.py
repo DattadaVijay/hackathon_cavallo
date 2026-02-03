@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run /Workspace/Users/jenitjain10@gmail.com/hackathon_cavallo/src/config
+# MAGIC %run ./config
 
 # COMMAND ----------
 
