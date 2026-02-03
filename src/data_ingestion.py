@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run /Workspace/Users/dattada.vijay@gmail.com/.bundle/Cavallo_hackathon/dev/files/src/config
+
+# COMMAND ----------
+
 from pyspark.sql.types import StructType, StructField, StringType, DoubleType, TimestampType
 from pyspark.sql.functions import to_timestamp, col
 
@@ -21,3 +25,7 @@ query = (raw_df.writeStream
     .trigger(availableNow=True)
     .table("workspace.default.nasa_telemetry_raw")
 )
+
+# COMMAND ----------
+
+spark.read.table("workspace.default.nasa_telemetry_raw").display()

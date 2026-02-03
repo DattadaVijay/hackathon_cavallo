@@ -1,6 +1,6 @@
 # Databricks notebook source
-RAW_DIR = "/Volumes/workspace/default/nasa_data/raw/"
-CHECKPOINT_DIR = "/Volumes/workspace/default/nasa_data/checkpoints/"
+RAW_DIR = "/Volumes/workspace/default/hackathon/raw_data/"
+CHECKPOINT_DIR = "/Volumes/workspace/default/hackathon/checkpoint/"
 
 field_names = ["AIRLOCK000001","AIRLOCK000002","AIRLOCK000003","AIRLOCK000004","AIRLOCK000005","AIRLOCK000006",
 "AIRLOCK000007","AIRLOCK000008","AIRLOCK000009","AIRLOCK000010","AIRLOCK000011","AIRLOCK000012",
@@ -58,3 +58,20 @@ field_names = ["AIRLOCK000001","AIRLOCK000002","AIRLOCK000003","AIRLOCK000004","
 "CSASPDM0011","CSASPDM0012","CSASPDM0013","CSASPDM0014","CSASPDM0015","CSASPDM0016",
 "CSASPDM0017","CSASPDM0018","CSASPDM0019","CSASPDM0020","CSASPDM0021","CSASPDM0022",
 "CSAMBS00001","CSAMBS00002","CSAMBA00003","CSAMBA00004"]
+
+# COMMAND ----------
+
+dbutils.fs.ls("/Volumes/workspace/default/hackathon/raw_data/")
+
+# COMMAND ----------
+
+from datetime import datetime, timedelta
+
+def convert_nasa_decimal_to_utc(decimal_hours, year=2026):
+    base_date = datetime(year, 1, 1)
+
+    actual_utc = base_date + timedelta(hours=(decimal_hours - 24))
+    
+    return actual_utc
+test_val = 836.7037505555816  
+print(f"UTC Timestamp: {convert_nasa_decimal_to_utc(test_val)}")

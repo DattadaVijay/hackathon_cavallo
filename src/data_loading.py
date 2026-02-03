@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %restart_python
+
+# COMMAND ----------
+
 # MAGIC %pip install lightstreamer-client-lib
 # MAGIC import sys
 # MAGIC if 'dbutils' in globals():
@@ -7,7 +11,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run /Workspace/Users/jenitjain10@gmail.com/hackathon_cavallo/config
+# MAGIC %run /Workspace/Users/dattada.vijay@gmail.com/.bundle/Cavallo_hackathon/dev/files/src/config
 
 # COMMAND ----------
 
@@ -84,8 +88,8 @@ class ISSLive(SubscriptionListener):
         # print(f"Incoming data: {update}")
         rec = {
             "item_name": update.getItemName(),
-            "timestamp": update.getValue("timestamp"),
-            "value": update.getValue("value")
+            "timestamp": update.getValue("TimeStamp"),
+            "value": update.getValue("Value")
         }
         event_q.put(rec)
         # return rec
@@ -102,7 +106,7 @@ sub.setRequestedSnapshot("yes")
 sub.addListener(ISSLive())
 client.connect()
 client.subscribe(sub)
-# time.sleep(10)
+# time.sleep(30)
 
 
 
