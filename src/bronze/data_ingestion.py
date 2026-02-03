@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run /Workspace/Users/dattada.vijay@gmail.com/.bundle/Cavallo_hackathon/dev/files/src/config
+MAGIC %run config.py
 
 # COMMAND ----------
 
