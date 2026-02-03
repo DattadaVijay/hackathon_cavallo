@@ -106,7 +106,7 @@ sub.setRequestedSnapshot("yes")
 sub.addListener(ISSLive())
 client.connect()
 client.subscribe(sub)
-# time.sleep(30)
+time.sleep(10)
 
 
 
