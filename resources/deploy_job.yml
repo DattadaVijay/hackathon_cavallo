@@ -25,3 +25,14 @@ resources:
             - task_key: data_ingestion
           notebook_task:
             notebook_path: ../src/silver/bronze_to_silver.py
+
+        - task_key: iss_telemetry_dashboard
+          depends_on:
+            - task_key: bronze_silver
+          dashboard_task:
+            subscription:
+              subscribers:
+                - user_name: dattada.vijay@gmail.com
+              paused: true
+            warehouse_id: ece081f3bd7cb8a7
+            dashboard_id: 01f1014d93781590a42a2362048b5c8c
