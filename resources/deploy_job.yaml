@@ -1,6 +1,6 @@
 resources:
   jobs:
-    jobs_deploy:
+    nasa_forecast:
       name: nasa_forecast
       tags:
         domain: nasa forecasting
