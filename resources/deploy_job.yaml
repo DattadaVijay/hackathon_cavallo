@@ -1,0 +1,26 @@
+resources:
+  jobs:
+    jobs_deploy:
+      name: nasa_forecast
+      tags:
+        domain: nasa forecasting
+ 
+      tasks:
+ 
+        - task_key: data_extraction
+          max_retries: 0
+          notebook_task:
+            notebook_path: ../src/bronze/data_loading.py
+ 
+        - task_key: data_ingestion
+          max_retries: 0
+          depends_on: data_extraction
+          notebook_task:
+            notebook_path: ../src/bronze/data_ingestion.py
+ 
+        - task_key: bronze_silver
+          max_retries: 0
+          depends_on:
+            - task_key: data_ingestion
+          notebook_task:
+            notebook_path: ../src/silver/bronze_to_silver.py
