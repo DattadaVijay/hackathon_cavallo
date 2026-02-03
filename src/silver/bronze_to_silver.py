@@ -56,7 +56,7 @@ query = (
     streaming_df
     .writeStream
     .foreachBatch(process_batch)
-    .option("checkpointLocation", "/Volumes/workspace/default/nasa_data/checkpoints_silver/")
+    .option("checkpointLocation", "/Volumes/workspace/default/hackathon/silver_checkpoint/")
     .trigger(availableNow=True)
     .start()
 )
