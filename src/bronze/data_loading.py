@@ -11,7 +11,7 @@
 
 # COMMAND ----------
 
-# MAGIC  %run config.py
+# MAGIC  %run ./config.py
 
 # COMMAND ----------
 
