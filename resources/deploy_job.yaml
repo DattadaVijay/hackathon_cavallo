@@ -14,7 +14,8 @@ resources:
  
         - task_key: data_ingestion
           max_retries: 0
-          depends_on: data_extraction
+          depends_on: 
+            -task_key: data_extraction
           notebook_task:
             notebook_path: ../src/bronze/data_ingestion.py
  
