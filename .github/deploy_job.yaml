@@ -1,0 +1,41 @@
+name: Databricks Bundle Deploy - dev
+ 
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      # DATACONTRACT_DATABRICKS_SERVER_HOSTNAME: ${{ secrets.DATABRICKS_HOST_CLEAN }}
+      # DATACONTRACT_DATABRICKS_HTTP_PATH: ${{ secrets.DATACONTRACT_DATABRICKS_HTTP_PATH }}
+      # DATACONTRACT_DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+ 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+ 
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+ 
+      - name: Setup databricks CLI
+        uses: databricks/setup-cli@v0.277.0
+ 
+      # - name: Setup datacontract CLI
+      #   run: pip install "datacontract-cli[databricks]" pyarrow
+ 
+      - name: Deploy Databricks bundle
+        run: databricks bundle deploy --target dev --auto-approve
+ 
+      - name: Run the deployed job
+        run: databricks bundle run --target dev tag_policies_job
+ 
+      # - name: test the contract on the table
+      #   run: datacontract test fixtures/odcs.yml
