@@ -34,8 +34,8 @@ jobs:
       - name: Deploy Databricks bundle
         run: databricks bundle deploy --target dev --auto-approve
  
-      # - name: Run the deployed job
-      #   run: databricks bundle run --target dev tag_policies_job
+      - name: Run the deployed job
+        run: databricks bundle run --target dev tag_policies_job
  
       # - name: test the contract on the table
       #   run: datacontract test fixtures/odcs.yml
